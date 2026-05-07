@@ -221,3 +221,7 @@ Após as correções, a página apresentou melhorias significativas:
 A versão sem semântica funcionava visualmente, porém apresentava limitações estruturais e de acessibilidade.
 
 A aplicação de HTML semântico permitiu manter o mesmo layout visual, mas com uma estrutura correta, significativa e acessível, seguindo boas práticas do desenvolvimento web moderno.
+
+##Ferramentas Utilizadas
+Claude.IA (Para a execução dos sites)
+Gemini (Para a documentação)
