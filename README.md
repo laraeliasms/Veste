@@ -2,8 +2,9 @@
 ##Diciplina
 Desenvolvimento Web
 ## Alunos
-Lara Geovana 
-Camilla Valenzuela
+Lara Geovana 22502104
+Camilla Valenzuela 22502503
+Gabriel Rios 22505812
 
 ## Descrição
 
