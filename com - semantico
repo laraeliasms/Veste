@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VESTE — Moda Consciente</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --dark: #1a1714;
+      --clay: #b5785a;
+      --sage: #7a8c6e;
+      --muted: #8a8278;
+      --border: #d8d0c4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 0 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    header .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--dark); }
+
+    header .actions {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    header .actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    header .actions button:hover { color: var(--dark); }
+
+    .cart-btn {
+      background: var(--dark) !important;
+      color: var(--cream) !important;
+      padding: 0.5rem 1.2rem !important;
+      border-radius: 2px !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 64px);
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 3rem;
+    }
+
+    .hero-text .eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-text h1 em {
+      font-style: italic;
+      color: var(--clay);
+    }
+
+    .hero-text p {
+      color: var(--muted);
+      max-width: 340px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--dark);
+      color: var(--cream);
+      padding: 0.85rem 2.2rem;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s;
+      width: fit-content;
+    }
+
+    .btn-primary:hover { background: var(--clay); }
+
+    .hero-image {
+      position: relative;
+      overflow: hidden;
+      background: #d4c8b8;
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(181,120,90,0.15) 0%, transparent 60%);
+    }
+
+    .hero-image .placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      opacity: 0.25;
+      color: var(--dark);
+    }
+
+    /* ── PRODUTOS ── */
+    .produtos {
+      padding: 6rem 3rem;
+    }
+
+    .produtos-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+    }
+
+    .produtos-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+    }
+
+    .produtos-header a {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--clay);
+      text-decoration: none;
+    }
+
+    .produtos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    article.produto {
+      cursor: pointer;
+    }
+
+    .produto-imagem {
+      aspect-ratio: 3/4;
+      background: #ddd5c8;
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .produto-imagem .img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      opacity: 0.3;
+    }
+
+    .produto-badge {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.8rem;
+      background: var(--sage);
+      color: white;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 1px;
+    }
+
+    .produto-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--dark);
+      color: var(--cream);
+      text-align: center;
+      padding: 0.9rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transform: translateY(100%);
+      transition: transform 0.28s ease;
+    }
+
+    article.produto:hover .produto-overlay { transform: translateY(0); }
+
+    .produto h3 {
+      font-weight: 400;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .produto p.categoria {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .produto .preco {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--clay);
+    }
+
+    /* ── BANNER MIDDLE ── */
+    .banner-meio {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .banner-meio h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+    }
+
+    .banner-meio h2 em { color: var(--clay); font-style: italic; }
+
+    .banner-meio p { color: #aaa49c; line-height: 1.8; margin-bottom: 2rem; }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid var(--cream);
+      color: var(--cream);
+      padding: 0.8rem 2rem;
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover { background: var(--cream); color: var(--dark); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: #aaa49c;
+      padding: 4rem 3rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    footer .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--cream);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    footer p { font-size: 0.85rem; line-height: 1.8; max-width: 260px; }
+
+    footer h4 {
+      color: var(--cream);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 0.6rem; }
+    footer ul a { color: #aaa49c; text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    footer ul a:hover { color: var(--cream); }
+
+    .footer-bottom {
+      border-top: 1px solid #2e2b28;
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+    }
+
+    /* ── ACESSIBILIDADE ── */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER com semântica correta -->
+  <header>
+    <a href="#" class="logo" aria-label="VESTE — Página inicial">VESTE</a>
+
+    <nav aria-label="Navegação principal">
+      <ul>
+        <li><a href="#novidades">Novidades</a></li>
+        <li><a href="#colecao">Coleção</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <div class="actions" role="group" aria-label="Ações do usuário">
+      <button type="button" aria-label="Buscar produtos">Buscar</button>
+      <button type="button" aria-label="Minha conta">Conta</button>
+      <button type="button" class="cart-btn" aria-label="Carrinho — 0 itens">Carrinho (0)</button>
+    </div>
+  </header>
+
+  <!-- MAIN — todo conteúdo principal fica aqui -->
+  <main>
+
+    <!-- SEÇÃO HERO -->
+    <section class="hero" aria-labelledby="hero-titulo">
+      <div class="hero-text">
+        <p class="eyebrow">Nova Coleção — Outono 2025</p>
+        <h1 id="hero-titulo">Veste quem<br/><em>você</em> é</h1>
+        <p>Roupas feitas com intenção — tecidos naturais, cortes duradouros e estética que transcende tendências passageiras.</p>
+        <a href="#colecao" class="btn-primary">Explorar Coleção</a>
+      </div>
+
+      <figure class="hero-image" aria-hidden="true">
+        <div class="placeholder">✦</div>
+      </figure>
+    </section>
+
+    <!-- SEÇÃO DE PRODUTOS -->
+    <section id="colecao" class="produtos" aria-labelledby="produtos-titulo">
+      <header class="produtos-header">
+        <h2 id="produtos-titulo">Destaques</h2>
+        <a href="#" aria-label="Ver todos os produtos da coleção">Ver tudo →</a>
+      </header>
+
+      <!-- Lista de produtos com article — cada produto é uma entidade independente -->
+      <ul class="produtos-grid" role="list">
+
+        <li>
+          <article class="produto">
+            <div class="produto-imagem">
+              <div class="img-placeholder" aria-hidden="true">👗</div>
+              <span class="produto-badge">Novo</span>
+              <div class="produto-overlay" aria-hidden="true">Adicionar ao Carrinho</div>
+            </div>
+            <h3>Vestido Linho Toscana</h3>
+            <p class="categoria">Vestidos</p>
+            <p class="preco" aria-label="Preço: R$ 389,00">R$ 389,00</p>
+          </article>
+        </li>
+
+        <li>
+          <article class="produto">
+            <div class="produto-imagem">
+              <div class="img-placeholder" aria-hidden="true">🧥</div>
+              <div class="produto-overlay" aria-hidden="true">Adicionar ao Carrinho</div>
+            </div>
+            <h3>Blazer Alfaiataria</h3>
+            <p class="categoria">Blazers</p>
+            <p class="preco" aria-label="Preço: R$ 520,00">R$ 520,00</p>
+          </article>
+        </li>
+
+        <li>
+          <article class="produto">
+            <div class="produto-imagem">
+              <div class="img-placeholder" aria-hidden="true">👚</div>
+              <span class="produto-badge">Popular</span>
+              <div class="produto-overlay" aria-hidden="true">Adicionar ao Carrinho</div>
+            </div>
+            <h3>Blusa Seda Natural</h3>
+            <p class="categoria">Blusas</p>
+            <p class="preco" aria-label="Preço: R$ 245,00">R$ 245,00</p>
+          </article>
+        </li>
+
+        <li>
+          <article class="produto">
+            <div class="produto-imagem">
+              <div class="img-placeholder" aria-hidden="true">👖</div>
+              <div class="produto-overlay" aria-hidden="true">Adicionar ao Carrinho</div>
+            </div>
+            <h3>Calça Wide Leg</h3>
+            <p class="categoria">Calças</p>
+            <p class="preco" aria-label="Preço: R$ 310,00">R$ 310,00</p>
+          </article>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- BANNER DO MEIO -->
+    <section class="banner-meio" aria-labelledby="banner-titulo">
+      <div>
+        <h2 id="banner-titulo">Feito para<br/><em>durar</em></h2>
+      </div>
+      <div>
+        <p>Cada peça é produzida com respeito ao tempo — ao seu tempo, ao tempo dos artesãos e ao tempo da terra. Porque moda consciente não é tendência, é escolha.</p>
+        <a href="#sobre" class="btn-outline">Nossa história</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER com semântica de rodapé -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <span class="logo">VESTE</span>
+        <p>Moda consciente, cortes duradouros e tecidos que respeitam a terra e quem a veste.</p>
+      </div>
+
+      <nav aria-label="Links de coleção">
+        <h4>Coleção</h4>
+        <ul>
+          <li><a href="#">Novidades</a></li>
+          <li><a href="#">Vestidos</a></li>
+          <li><a href="#">Blazers</a></li>
+          <li><a href="#">Calças</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Links da empresa">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="#">Sustentabilidade</a></li>
+          <li><a href="#">Parcerias</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-label="Links de suporte">
+        <h4>Suporte</h4>
+        <ul>
+          <li><a href="#">Trocas e Devoluções</a></li>
+          <li><a href="#">Guia de Tamanhos</a></li>
+          <li><a href="#">Fale Conosco</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <small>© 2025 VESTE. Todos os direitos reservados.</small>
+      <small>Política de Privacidade · Termos de Uso</small>
+    </div>
+  </footer>
+
+</body>
+</html>
