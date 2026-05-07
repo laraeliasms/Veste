@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VESTE — Moda Consciente</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --dark: #1a1714;
+      --clay: #b5785a;
+      --sage: #7a8c6e;
+      --muted: #8a8278;
+      --border: #d8d0c4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── HEADER ── */
+    .topo {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 0 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .topo .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .menu-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none; /* lista sem semântica — só visual */
+    }
+
+    .menu-links .link {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .menu-links .link:hover { color: var(--dark); }
+
+    .topo-acoes {
+      display: flex;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .topo-acoes .botao-texto {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .topo-acoes .botao-texto:hover { color: var(--dark); }
+
+    .botao-carrinho {
+      background: var(--dark) !important;
+      color: var(--cream) !important;
+      padding: 0.5rem 1.2rem !important;
+      border-radius: 2px !important;
+    }
+
+    /* ── HERO ── */
+    .banner-principal {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 64px);
+    }
+
+    .banner-texto {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 3rem;
+    }
+
+    .banner-texto .olho {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ⚠️ Sem semântica: usa div em vez de h1 */
+    .banner-texto .titulo-grande {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 1.8rem;
+    }
+
+    .banner-texto .titulo-grande .destaque {
+      font-style: italic;
+      color: var(--clay);
+    }
+
+    .banner-texto .descricao {
+      color: var(--muted);
+      max-width: 340px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .botao-primario {
+      display: inline-block;
+      background: var(--dark);
+      color: var(--cream);
+      padding: 0.85rem 2.2rem;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s;
+      width: fit-content;
+    }
+
+    .botao-primario:hover { background: var(--clay); }
+
+    .banner-foto {
+      position: relative;
+      overflow: hidden;
+      background: #d4c8b8;
+    }
+
+    .banner-foto::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(181,120,90,0.15) 0%, transparent 60%);
+    }
+
+    .banner-foto .placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem;
+      opacity: 0.25;
+      color: var(--dark);
+    }
+
+    /* ── PRODUTOS ── */
+    .area-produtos {
+      padding: 6rem 3rem;
+    }
+
+    .area-produtos-topo {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ⚠️ Sem semântica: div em vez de h2 */
+    .area-produtos-topo .titulo-secao {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+    }
+
+    .area-produtos-topo .link-ver-tudo {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--clay);
+      text-decoration: none;
+    }
+
+    /* ⚠️ Sem semântica: div em vez de ul */
+    .grade-produtos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    /* ⚠️ Sem semântica: div em vez de article */
+    .caixa-produto {
+      cursor: pointer;
+    }
+
+    .produto-img {
+      aspect-ratio: 3/4;
+      background: #ddd5c8;
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .produto-img .emoji {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      opacity: 0.3;
+    }
+
+    .etiqueta {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.8rem;
+      background: var(--sage);
+      color: white;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 1px;
+    }
+
+    .produto-hover {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--dark);
+      color: var(--cream);
+      text-align: center;
+      padding: 0.9rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transform: translateY(100%);
+      transition: transform 0.28s ease;
+    }
+
+    .caixa-produto:hover .produto-hover { transform: translateY(0); }
+
+    /* ⚠️ Sem semântica: span em vez de h3 */
+    .nome-produto {
+      display: block;
+      font-weight: 400;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ⚠️ Sem semântica: span em vez de p com significado */
+    .cat-produto {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .preco-produto {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--clay);
+    }
+
+    /* ── BANNER MEIO ── */
+    .faixa-meio {
+      background: var(--dark);
+      color: var(--cream);
+      padding: 5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    /* ⚠️ Sem semântica: div em vez de h2 */
+    .faixa-meio .titulo-faixa {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.2;
+    }
+
+    .faixa-meio .titulo-faixa .it { color: var(--clay); font-style: italic; }
+
+    .faixa-meio .texto-faixa { color: #aaa49c; line-height: 1.8; margin-bottom: 2rem; }
+
+    .botao-borda {
+      display: inline-block;
+      border: 1px solid var(--cream);
+      color: var(--cream);
+      padding: 0.8rem 2rem;
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    .botao-borda:hover { background: var(--cream); color: var(--dark); }
+
+    /* ── FOOTER ── */
+    .rodape {
+      background: var(--dark);
+      color: #aaa49c;
+      padding: 4rem 3rem 2rem;
+    }
+
+    .rodape-colunas {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .rodape .logo-rodape {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--cream);
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .rodape .descricao-rodape { font-size: 0.85rem; line-height: 1.8; max-width: 260px; }
+
+    /* ⚠️ Sem semântica: div em vez de h4 */
+    .titulo-coluna {
+      display: block;
+      color: var(--cream);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    /* ⚠️ Sem semântica: div em vez de nav+ul */
+    .links-coluna { display: flex; flex-direction: column; gap: 0.6rem; }
+    .links-coluna a { color: #aaa49c; text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .links-coluna a:hover { color: var(--cream); }
+
+    .rodape-base {
+      border-top: 1px solid #2e2b28;
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ⚠️ div em vez de header -->
+  <div class="topo">
+    <a href="#" class="logo">VESTE</a>
+
+    <!-- ⚠️ div em vez de nav -->
+    <div class="menu-links">
+      <a href="#" class="link">Novidades</a>
+      <a href="#" class="link">Coleção</a>
+      <a href="#" class="link">Sobre</a>
+      <a href="#" class="link">Contato</a>
+    </div>
+
+    <!-- ⚠️ div em vez de group semântico -->
+    <div class="topo-acoes">
+      <button class="botao-texto">Buscar</button>
+      <button class="botao-texto">Conta</button>
+      <button class="botao-texto botao-carrinho">Carrinho (0)</button>
+    </div>
+  </div>
+
+  <!-- ⚠️ div em vez de main -->
+  <div class="conteudo">
+
+    <!-- ⚠️ div em vez de section -->
+    <div class="banner-principal">
+      <div class="banner-texto">
+        <div class="olho">Nova Coleção — Outono 2025</div>
+
+        <!-- ⚠️ div em vez de h1 — invisível para leitores de tela como título -->
+        <div class="titulo-grande">
+          Veste quem<br/><span class="destaque">você</span> é
+        </div>
+
+        <div class="descricao">Roupas feitas com intenção — tecidos naturais, cortes duradouros e estética que transcende tendências passageiras.</div>
+        <a href="#" class="botao-primario">Explorar Coleção</a>
+      </div>
+
+      <div class="banner-foto">
+        <div class="placeholder">✦</div>
+      </div>
+    </div>
+
+    <!-- ⚠️ div em vez de section -->
+    <div class="area-produtos">
+      <div class="area-produtos-topo">
+        <!-- ⚠️ div em vez de h2 -->
+        <div class="titulo-secao">Destaques</div>
+        <a href="#" class="link-ver-tudo">Ver tudo →</a>
+      </div>
+
+      <!-- ⚠️ div em vez de ul — sem estrutura de lista -->
+      <div class="grade-produtos">
+
+        <!-- ⚠️ div em vez de article -->
+        <div class="caixa-produto">
+          <div class="produto-img">
+            <div class="emoji">👗</div>
+            <div class="etiqueta">Novo</div>
+            <div class="produto-hover">Adicionar ao Carrinho</div>
+          </div>
+          <!-- ⚠️ span estilizado em vez de h3 -->
+          <span class="nome-produto">Vestido Linho Toscana</span>
+          <span class="cat-produto">Vestidos</span>
+          <span class="preco-produto">R$ 389,00</span>
+        </div>
+
+        <div class="caixa-produto">
+          <div class="produto-img">
+            <div class="emoji">🧥</div>
+            <div class="produto-hover">Adicionar ao Carrinho</div>
+          </div>
+          <span class="nome-produto">Blazer Alfaiataria</span>
+          <span class="cat-produto">Blazers</span>
+          <span class="preco-produto">R$ 520,00</span>
+        </div>
+
+        <div class="caixa-produto">
+          <div class="produto-img">
+            <div class="emoji">👚</div>
+            <div class="etiqueta">Popular</div>
+            <div class="produto-hover">Adicionar ao Carrinho</div>
+          </div>
+          <span class="nome-produto">Blusa Seda Natural</span>
+          <span class="cat-produto">Blusas</span>
+          <span class="preco-produto">R$ 245,00</span>
+        </div>
+
+        <div class="caixa-produto">
+          <div class="produto-img">
+            <div class="emoji">👖</div>
+            <div class="produto-hover">Adicionar ao Carrinho</div>
+          </div>
+          <span class="nome-produto">Calça Wide Leg</span>
+          <span class="cat-produto">Calças</span>
+          <span class="preco-produto">R$ 310,00</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ⚠️ div em vez de section -->
+    <div class="faixa-meio">
+      <div>
+        <!-- ⚠️ div em vez de h2 -->
+        <div class="titulo-faixa">Feito para<br/><span class="it">durar</span></div>
+      </div>
+      <div>
+        <div class="texto-faixa">Cada peça é produzida com respeito ao tempo — ao seu tempo, ao tempo dos artesãos e ao tempo da terra. Porque moda consciente não é tendência, é escolha.</div>
+        <a href="#" class="botao-borda">Nossa história</a>
+      </div>
+    </div>
+
+  </div>
+  <!-- fim do conteudo — sem semântica de main -->
+
+  <!-- ⚠️ div em vez de footer -->
+  <div class="rodape">
+    <div class="rodape-colunas">
+      <div>
+        <span class="logo-rodape">VESTE</span>
+        <div class="descricao-rodape">Moda consciente, cortes duradouros e tecidos que respeitam a terra e quem a veste.</div>
+      </div>
+
+      <!-- ⚠️ div em vez de nav -->
+      <div>
+        <span class="titulo-coluna">Coleção</span>
+        <div class="links-coluna">
+          <a href="#">Novidades</a>
+          <a href="#">Vestidos</a>
+          <a href="#">Blazers</a>
+          <a href="#">Calças</a>
+        </div>
+      </div>
+
+      <div>
+        <span class="titulo-coluna">Empresa</span>
+        <div class="links-coluna">
+          <a href="#">Sobre nós</a>
+          <a href="#">Sustentabilidade</a>
+          <a href="#">Parcerias</a>
+        </div>
+      </div>
+
+      <div>
+        <span class="titulo-coluna">Suporte</span>
+        <div class="links-coluna">
+          <a href="#">Trocas e Devoluções</a>
+          <a href="#">Guia de Tamanhos</a>
+          <a href="#">Fale Conosco</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="rodape-base">
+      <div>© 2025 VESTE. Todos os direitos reservados.</div>
+      <div>Política de Privacidade · Termos de Uso</div>
+    </div>
+  </div>
+
+</body>
+</html>
